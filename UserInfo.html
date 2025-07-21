@@ -69,6 +69,49 @@
             #confirmBtn:hover {
                 background: #0056b3;
             }
+
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 480px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .skin-example {
+            margin-bottom: 20px;
+        }
+
+            .skin-example img {
+                width: 100%;
+                border-radius: 8px;
+                margin-top: 5px;
+            }
+
     </style>
 </head>
 <body>
@@ -102,6 +145,7 @@
 
         <div class="section">
             <label>สภาพผิว</label>
+            <button type="button" onclick="openModal()">ดูตัวอย่าง</button>
             <div class="icon-select" id="skinTypeSelect">
                 <div class="icon-option" data-value="ผิวแห้ง">
                     <img src="https://img.icons8.com/ios-filled/50/wind-dry.png" alt="ผิวแห้ง">
@@ -122,10 +166,53 @@
             </div>
         </div>
 
-        <div class="section">
-            <label>ระดับความมันบนใบหน้า: <span id="oilLevelValue">3</span></label>
-            <input type="range" name="oilLevel" min="1" max="5" value="3" oninput="document.getElementById('oilLevelValue').innerText = this.value">
+        <!-- Modal -->
+        <div id="skinModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3>ตัวอย่างสภาพผิว</h3>
+
+                <div class="skin-example">
+                    <strong>ผิวแห้ง</strong>
+                    <img src="https://via.placeholder.com/400x200?text=Dry+Skin" alt="ผิวแห้ง">
+                </div>
+
+                <div class="skin-example">
+                    <strong>ผิวธรรมดา</strong>
+                    <img src="https://via.placeholder.com/400x200?text=Normal+Skin" alt="ผิวธรรมดา">
+                </div>
+
+                <div class="skin-example">
+                    <strong>ผิวผสม</strong>
+                    <img src="https://via.placeholder.com/400x200?text=Combination+Skin" alt="ผิวผสม">
+                </div>
+
+                <div class="skin-example">
+                    <strong>ผิวมัน</strong>
+                    <img src="https://via.placeholder.com/400x200?text=Oily+Skin" alt="ผิวมัน">
+                </div>
+            </div>
         </div>
+
+        <script>
+            function openModal() {
+                document.getElementById("skinModal").style.display = "block";
+            }
+
+            function closeModal() {
+                document.getElementById("skinModal").style.display = "none";
+            }
+
+            // ปิด modal ถ้ากดนอกกล่อง
+            window.onclick = function (event) {
+                const modal = document.getElementById("skinModal");
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+
 
         <div class="section">
             <label>ระดับความแพ้ง่าย: <span id="sensitiveLevelValue">3</span></label>

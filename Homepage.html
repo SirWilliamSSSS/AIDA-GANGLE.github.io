@@ -1,12 +1,105 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="th">
 <head>
-    <meta charset="utf-8" />
-    <title>hello</title>
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>แบบฟอร์มยินยอม PDPA</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0;
+            font-size: 1rem;
+        }
+
+        .submit {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+            .submit:disabled {
+                background-color: #aaa;
+            }
+
+        small {
+            display: block;
+            color: #666;
+            font-size: 0.85rem;
+        }
+    </style>
 </head>
 <body>
-    <h1> Hello </h1>
+    <div class="container">
+        <h1>แบบฟอร์มยินยอมการใช้ข้อมูลส่วนบุคคล (PDPA)</h1>
+        <p>
+            เราขอความยินยอมในการใช้ข้อมูลของคุณ เช่น ชื่อ, รูปถ่าย, และข้อมูลสุขภาพผิว
+            เพื่อให้บริการวิเคราะห์ผิวและแนะนำผลิตภัณฑ์ที่เหมาะสมผ่านระบบ AI
+        </p>
+        <label>
+            <input type="checkbox" id="consentCheckbox" />
+            ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ข้างต้น
+        </label>
+        <button id="submitBtn" class="submit" disabled>ยืนยันการยินยอม</button>
+        <small>คุณสามารถถอนความยินยอมได้ภายหลังโดยติดต่อผ่าน LINE OA</small>
+    </div>
+
+    <script>const checkbox = document.getElementById('consentCheckbox');
+    const button = document.getElementById('submitBtn');
+
+    checkbox.addEventListener('change', () => {
+      button.disabled = !checkbox.checked;
+    });
+
+    button.addEventListener('click', async () => {
+      const liff = window.liff;
+      if (!liff.isInitialized()) {
+        await liff.init({ liffId: "YOUR_LIFF_ID" }); // เปลี่ยนเป็น LIFF ID ของคุณ
+      }
+
+      const profile = await liff.getProfile();
+      const userId = profile.userId;
+
+      const payload = {
+        userId,
+        consent: true,
+        timestamp: new Date().toISOString(),
+      };
+
+      await fetch("https://YOUR_BACKEND_URL/consent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      alert("บันทึกความยินยอมเรียบร้อย ขอบคุณครับ");
+      liff.closeWindow();
+    });</script>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </body>
 </html>

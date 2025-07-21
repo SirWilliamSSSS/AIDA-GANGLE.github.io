@@ -1,187 +1,97 @@
 ﻿<!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>แบบฟอร์มยินยอม PDPA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ยินยอม PDPA</title>
     <style>
         body {
             font-family: sans-serif;
             padding: 20px;
-            background-color: #f8f9fa;
         }
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-size: 1rem;
-        }
-
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+        #notice {
+            height: 300px;
+            overflow-y: auto;
             border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
         }
 
-        .submit {
-            background-color: #28a745;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
+        #nextBtn {
             margin-top: 10px;
         }
 
-            .submit:disabled {
-                background-color: #aaa;
-            }
-
-        .hidden {
-            display: none;
-        }
-
-        small {
-            display: block;
-            color: #666;
-            font-size: 0.85rem;
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div class="container" id="consentPage">
-        <h1>แบบฟอร์มยินยอมการใช้ข้อมูลส่วนบุคคล (PDPA)</h1>
+    <h2>ประกาศเรื่องการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคล (Privacy Notice)</h2>
+    <div id="notice" onscroll="enableCheckboxIfScrolledToBottom()">
         <p>
-            เราขอความยินยอมในการใช้ข้อมูลของคุณ เช่น ชื่อ, รูปถ่าย, และข้อมูลสุขภาพผิว
-            เพื่อให้บริการวิเคราะห์ผิวและแนะนำผลิตภัณฑ์ที่เหมาะสมผ่านระบบ AI
+            เพื่อให้เป็นไปตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)...<br><br>
+
+            <strong>1. ข้อมูลส่วนบุคคลที่เราเก็บรวบรวม</strong><br>
+            เราจะเก็บข้อมูลต่อไปนี้เมื่อท่านใช้บริการผ่าน LINE OA หรือระบบวิเคราะห์ภาพของเรา:<br>
+            - ชื่อ-นามสกุล<br>
+            - เพศ<br>
+            - อายุ<br>
+            - รูปภาพที่ท่านส่งเข้ามา (เช่น ภาพผิวหน้า หรือร่างกาย)<br>
+            - ...<br><br>
+
+            <strong>2. วัตถุประสงค์ในการใช้ข้อมูล</strong><br>
+            - วิเคราะห์ภาพที่ท่านส่งเข้ามาโดยใช้ระบบ AI<br>
+            - แนะนำสินค้า บริการ หรือแนวทางดูแลสุขภาพ/ผิวพรรณ (ถ้ามี)<br>
+            - ...<br><br>
+
+            <strong>3. ระยะเวลาในการเก็บรักษาข้อมูล</strong><br>
+            - ข้อมูลส่วนบุคคลจะถูกเก็บไว้ ไม่เกินระยะเวลาที่จำเป็น ...<br><br>
+
+            <strong>4. การเปิดเผยข้อมูล</strong><br>
+            - เราจะไม่เปิดเผยข้อมูลของท่านให้บุคคลภายนอก เว้นแต่ ...<br><br>
+
+            <strong>5. สิทธิของเจ้าของข้อมูล</strong><br>
+            - ท่านมีสิทธิขอเข้าถึง / แก้ไข / ถอนความยินยอม ฯลฯ<br><br>
+
+            <strong>6. มาตรการรักษาความปลอดภัย</strong><br>
+            - มีการเข้ารหัส, จำกัดการเข้าถึง และควบคุมผู้ใช้งานระบบอย่างเหมาะสม<br>
         </p>
-        <label>
-            <input type="checkbox" id="consentCheckbox" />
-            ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ข้างต้น
-        </label>
-        <button id="submitBtn" class="submit" disabled>ถัดไป</button>
-        <small>คุณสามารถถอนความยินยอมได้ภายหลังโดยติดต่อผ่าน LINE OA</small>
     </div>
 
-    <div class="container hidden" id="formPage">
-        <h1>กรอกข้อมูลเพิ่มเติม</h1>
-        <form id="detailForm">
-            <label>เพศ:</label>
-            <label><input type="radio" name="gender" value="ชาย" required> ชาย</label>
-            <label><input type="radio" name="gender" value="หญิง"> หญิง</label>
-            <label>
-                <input type="radio" name="gender" value="อื่นๆ"> อื่นๆ
-                <input type="text" id="otherGender" placeholder="โปรดระบุถ้าเลือกอื่นๆ" />
-            </label>
+    <label>
+        <input type="checkbox" id="consentCheckbox" disabled>
+        ข้าพเจ้าได้อ่านและยินยอมตามข้อตกลง
+    </label><br>
 
-            <label>อายุ:</label>
-            <input type="number" name="age" required min="1" max="120" />
+    <button id="nextBtn" class="disabled" onclick="goToNextPage()">ถัดไป</button>
 
-            <label>ระดับความมันบนใบหน้า (1-5):</label>
-            <small><a href="https://example.com/oily-skin-levels" target="_blank">ดูตัวอย่างใบหน้ามัน</a></small>
-            <label><input type="radio" name="oilLevel" value="1" required> 1</label>
-            <label><input type="radio" name="oilLevel" value="2"> 2</label>
-            <label><input type="radio" name="oilLevel" value="3"> 3</label>
-            <label><input type="radio" name="oilLevel" value="4"> 4</label>
-            <label><input type="radio" name="oilLevel" value="5"> 5</label>
-
-            <label>ระดับความแพ้ง่ายของผิวหน้า (1-5):</label>
-            <small><a href="https://example.com/sensitive-skin-levels" target="_blank">ดูตัวอย่างผิวแพ้</a></small>
-            <label><input type="radio" name="sensitivityLevel" value="1" required> 1</label>
-            <label><input type="radio" name="sensitivityLevel" value="2"> 2</label>
-            <label><input type="radio" name="sensitivityLevel" value="3"> 3</label>
-            <label><input type="radio" name="sensitivityLevel" value="4"> 4</label>
-            <label><input type="radio" name="sensitivityLevel" value="5"> 5</label>
-
-            <button type="submit" class="submit">ยืนยันข้อมูล</button>
-        </form>
-    </div>
-
-    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
-        const checkbox = document.getElementById('consentCheckbox');
-        const button = document.getElementById('submitBtn');
-        const consentPage = document.getElementById('consentPage');
-        const formPage = document.getElementById('formPage');
-        let userId = "";
+        function enableCheckboxIfScrolledToBottom() {
+            const notice = document.getElementById('notice');
+            const checkbox = document.getElementById('consentCheckbox');
+            const nextBtn = document.getElementById('nextBtn');
 
-        checkbox.addEventListener('change', () => {
-            button.disabled = !checkbox.checked;
-        });
-
-        button.addEventListener('click', async () => {
-            const liff = window.liff;
-            if (!liff.isInitialized()) {
-                await liff.init({ liffId: "YOUR_LIFF_ID" });
+            if (notice.scrollTop + notice.clientHeight >= notice.scrollHeight) {
+                checkbox.disabled = false;
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        nextBtn.classList.remove('disabled');
+                    } else {
+                        nextBtn.classList.add('disabled');
+                    }
+                });
             }
+        }
 
-            const profile = await liff.getProfile();
-            userId = profile.userId;
-
-            // ส่ง consent
-            await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userId,
-                    consent: true,
-                    timestamp: new Date().toISOString(),
-                }),
-            });
-
-            // ไปหน้าแบบฟอร์มถัดไป
-            consentPage.classList.add("hidden");
-            formPage.classList.remove("hidden");
-        });
-
-        const form = document.getElementById('detailForm');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(form);
-            let gender = formData.get('gender');
-            if (gender === 'อื่นๆ') {
-                gender = document.getElementById('otherGender').value || 'อื่นๆ';
+        function goToNextPage() {
+            const checkbox = document.getElementById('consentCheckbox');
+            if (checkbox.checked) {
+                window.location.href = "page2.html"; // หรือชื่อไฟล์หน้าแบบฟอร์มของคุณ
             }
-
-            const data = {
-                userId,
-                gender,
-                age: formData.get('age'),
-                oilLevel: formData.get('oilLevel'),
-                sensitivityLevel: formData.get('sensitivityLevel'),
-                timestamp: new Date().toISOString(),
-            };
-
-            await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            alert("บันทึกข้อมูลเรียบร้อย ขอบคุณครับ");
-            liff.closeWindow();
-        });
+        }
     </script>
 </body>
 </html>

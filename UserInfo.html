@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>แบบสอบถามสภาพผิว</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: 10% auto;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+            .popup-content img {
+                width: 80%;
+                margin-bottom: 10px;
+            }
+
+            .popup-content h3 {
+                margin-top: 10px;
+                font-size: 1.1em;
+            }
+
+        .close-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>โปรดกรอกข้อมูลเพิ่มเติม</h2>
+
+    <form id="userForm">
+        <label>เพศ:</label>
+        <input type="radio" name="gender" value="ชาย"> ชาย
+        <input type="radio" name="gender" value="หญิง"> หญิง
+        <input type="radio" name="gender" value="อื่นๆ"> อื่นๆ
+
+        <label for="age">อายุ:</label>
+        <input type="number" name="age" id="age" required>
+
+        <label>
+            ระดับความมันบนใบหน้า:
+            <button type="button" onclick="showPopup()">ดูตัวอย่าง</button>
+        </label>
+        <input type="radio" name="oil" value="1"> 1
+        <input type="radio" name="oil" value="2"> 2
+        <input type="radio" name="oil" value="3"> 3
+        <input type="radio" name="oil" value="4"> 4
+        <input type="radio" name="oil" value="5"> 5
+
+        <label>
+            ระดับความแพ้ของผิวหน้า:
+            <a href="https://example.com/allergy-sample.jpg" target="_blank">ดูตัวอย่าง</a>
+        </label>
+        <input type="radio" name="sensitive" value="1"> 1
+        <input type="radio" name="sensitive" value="2"> 2
+        <input type="radio" name="sensitive" value="3"> 3
+        <input type="radio" name="sensitive" value="4"> 4
+        <input type="radio" name="sensitive" value="5"> 5
+
+        <br><br>
+        <button type="submit">Confirm</button>
+    </form>
+
+    <!-- 🌟 POPUP ตัวอย่างสภาพผิว -->
+    <div class="popup" id="skinPopup">
+        <div class="popup-content">
+            <h3>ตัวอย่างสภาพผิว</h3>
+            <img src="https://i.imgur.com/fJ5jCoM.jpg" alt="ผิวแห้ง">
+            <p>ผิวแห้ง: ลอกเป็นขุย รู้สึกตึง</p>
+            <img src="https://i.imgur.com/ab2kKtu.jpg" alt="ผิวธรรมดา">
+            <p>ผิวธรรมดา: สมดุล ไม่แห้งหรือมันเกินไป</p>
+            <img src="https://i.imgur.com/Saq9YmO.jpg" alt="ผิวผสม">
+            <p>ผิวผสม: มันบริเวณ T-zone แห้งตรงอื่น</p>
+            <img src="https://i.imgur.com/Lg7bNVc.jpg" alt="ผิวมัน">
+            <p>ผิวมัน: หน้ามันวาว รูขุมขนกว้าง</p>
+            <button class="close-btn" onclick="closePopup()">ปิด</button>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // 🔁 เปลี่ยนเป็น URL ของคุณ
+
+        const form = document.getElementById('userForm');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("ส่งข้อมูลเรียบร้อยแล้ว!"))
+                .catch(error => alert("เกิดข้อผิดพลาด: " + error.message));
+        });
+
+        function showPopup() {
+            document.getElementById('skinPopup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('skinPopup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

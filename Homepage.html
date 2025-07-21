@@ -1,130 +1,187 @@
 ﻿<!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <title>แบบสอบถามสภาพผิว</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>แบบฟอร์มยินยอม PDPA</title>
     <style>
         body {
             font-family: sans-serif;
             padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #333;
         }
 
         label {
             display: block;
+            margin: 15px 0 5px;
+            font-size: 1rem;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .submit {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
             margin-top: 10px;
         }
 
-        .popup {
+            .submit:disabled {
+                background-color: #aaa;
+            }
+
+        .hidden {
             display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
         }
 
-        .popup-content {
-            background: white;
-            padding: 20px;
-            max-width: 400px;
-            margin: 10% auto;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-            .popup-content img {
-                width: 80%;
-                margin-bottom: 10px;
-            }
-
-            .popup-content h3 {
-                margin-top: 10px;
-                font-size: 1.1em;
-            }
-
-        .close-btn {
-            margin-top: 15px;
-            padding: 8px 16px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        small {
+            display: block;
+            color: #666;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
-    <h2>โปรดกรอกข้อมูลเพิ่มเติม</h2>
-
-    <form id="userForm">
-        <label>เพศ:</label>
-        <input type="radio" name="gender" value="ชาย"> ชาย
-        <input type="radio" name="gender" value="หญิง"> หญิง
-        <input type="radio" name="gender" value="อื่นๆ"> อื่นๆ
-
-        <label for="age">อายุ:</label>
-        <input type="number" name="age" id="age" required>
-
+    <div class="container" id="consentPage">
+        <h1>แบบฟอร์มยินยอมการใช้ข้อมูลส่วนบุคคล (PDPA)</h1>
+        <p>
+            เราขอความยินยอมในการใช้ข้อมูลของคุณ เช่น ชื่อ, รูปถ่าย, และข้อมูลสุขภาพผิว
+            เพื่อให้บริการวิเคราะห์ผิวและแนะนำผลิตภัณฑ์ที่เหมาะสมผ่านระบบ AI
+        </p>
         <label>
-            ระดับความมันบนใบหน้า:
-            <button type="button" onclick="showPopup()">ดูตัวอย่าง</button>
+            <input type="checkbox" id="consentCheckbox" />
+            ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ข้างต้น
         </label>
-        <input type="radio" name="oil" value="1"> 1
-        <input type="radio" name="oil" value="2"> 2
-        <input type="radio" name="oil" value="3"> 3
-        <input type="radio" name="oil" value="4"> 4
-        <input type="radio" name="oil" value="5"> 5
-
-        <label>
-            ระดับความแพ้ของผิวหน้า:
-            <a href="https://example.com/allergy-sample.jpg" target="_blank">ดูตัวอย่าง</a>
-        </label>
-        <input type="radio" name="sensitive" value="1"> 1
-        <input type="radio" name="sensitive" value="2"> 2
-        <input type="radio" name="sensitive" value="3"> 3
-        <input type="radio" name="sensitive" value="4"> 4
-        <input type="radio" name="sensitive" value="5"> 5
-
-        <br><br>
-        <button type="submit">Confirm</button>
-    </form>
-
-    <!-- 🌟 POPUP ตัวอย่างสภาพผิว -->
-    <div class="popup" id="skinPopup">
-        <div class="popup-content">
-            <h3>ตัวอย่างสภาพผิว</h3>
-            <img src="https://i.imgur.com/fJ5jCoM.jpg" alt="ผิวแห้ง">
-            <p>ผิวแห้ง: ลอกเป็นขุย รู้สึกตึง</p>
-            <img src="https://i.imgur.com/ab2kKtu.jpg" alt="ผิวธรรมดา">
-            <p>ผิวธรรมดา: สมดุล ไม่แห้งหรือมันเกินไป</p>
-            <img src="https://i.imgur.com/Saq9YmO.jpg" alt="ผิวผสม">
-            <p>ผิวผสม: มันบริเวณ T-zone แห้งตรงอื่น</p>
-            <img src="https://i.imgur.com/Lg7bNVc.jpg" alt="ผิวมัน">
-            <p>ผิวมัน: หน้ามันวาว รูขุมขนกว้าง</p>
-            <button class="close-btn" onclick="closePopup()">ปิด</button>
-        </div>
+        <button id="submitBtn" class="submit" disabled>ถัดไป</button>
+        <small>คุณสามารถถอนความยินยอมได้ภายหลังโดยติดต่อผ่าน LINE OA</small>
     </div>
 
-    <script>
-        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // 🔁 เปลี่ยนเป็น URL ของคุณ
+    <div class="container hidden" id="formPage">
+        <h1>กรอกข้อมูลเพิ่มเติม</h1>
+        <form id="detailForm">
+            <label>เพศ:</label>
+            <label><input type="radio" name="gender" value="ชาย" required> ชาย</label>
+            <label><input type="radio" name="gender" value="หญิง"> หญิง</label>
+            <label>
+                <input type="radio" name="gender" value="อื่นๆ"> อื่นๆ
+                <input type="text" id="otherGender" placeholder="โปรดระบุถ้าเลือกอื่นๆ" />
+            </label>
 
-        const form = document.getElementById('userForm');
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => alert("ส่งข้อมูลเรียบร้อยแล้ว!"))
-                .catch(error => alert("เกิดข้อผิดพลาด: " + error.message));
+            <label>อายุ:</label>
+            <input type="number" name="age" required min="1" max="120" />
+
+            <label>ระดับความมันบนใบหน้า (1-5):</label>
+            <small><a href="https://example.com/oily-skin-levels" target="_blank">ดูตัวอย่างใบหน้ามัน</a></small>
+            <label><input type="radio" name="oilLevel" value="1" required> 1</label>
+            <label><input type="radio" name="oilLevel" value="2"> 2</label>
+            <label><input type="radio" name="oilLevel" value="3"> 3</label>
+            <label><input type="radio" name="oilLevel" value="4"> 4</label>
+            <label><input type="radio" name="oilLevel" value="5"> 5</label>
+
+            <label>ระดับความแพ้ง่ายของผิวหน้า (1-5):</label>
+            <small><a href="https://example.com/sensitive-skin-levels" target="_blank">ดูตัวอย่างผิวแพ้</a></small>
+            <label><input type="radio" name="sensitivityLevel" value="1" required> 1</label>
+            <label><input type="radio" name="sensitivityLevel" value="2"> 2</label>
+            <label><input type="radio" name="sensitivityLevel" value="3"> 3</label>
+            <label><input type="radio" name="sensitivityLevel" value="4"> 4</label>
+            <label><input type="radio" name="sensitivityLevel" value="5"> 5</label>
+
+            <button type="submit" class="submit">ยืนยันข้อมูล</button>
+        </form>
+    </div>
+
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+        const checkbox = document.getElementById('consentCheckbox');
+        const button = document.getElementById('submitBtn');
+        const consentPage = document.getElementById('consentPage');
+        const formPage = document.getElementById('formPage');
+        let userId = "";
+
+        checkbox.addEventListener('change', () => {
+            button.disabled = !checkbox.checked;
         });
 
-        function showPopup() {
-            document.getElementById('skinPopup').style.display = 'block';
-        }
+        button.addEventListener('click', async () => {
+            const liff = window.liff;
+            if (!liff.isInitialized()) {
+                await liff.init({ liffId: "YOUR_LIFF_ID" });
+            }
 
-        function closePopup() {
-            document.getElementById('skinPopup').style.display = 'none';
-        }
+            const profile = await liff.getProfile();
+            userId = profile.userId;
+
+            // ส่ง consent
+            await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId,
+                    consent: true,
+                    timestamp: new Date().toISOString(),
+                }),
+            });
+
+            // ไปหน้าแบบฟอร์มถัดไป
+            consentPage.classList.add("hidden");
+            formPage.classList.remove("hidden");
+        });
+
+        const form = document.getElementById('detailForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            let gender = formData.get('gender');
+            if (gender === 'อื่นๆ') {
+                gender = document.getElementById('otherGender').value || 'อื่นๆ';
+            }
+
+            const data = {
+                userId,
+                gender,
+                age: formData.get('age'),
+                oilLevel: formData.get('oilLevel'),
+                sensitivityLevel: formData.get('sensitivityLevel'),
+                timestamp: new Date().toISOString(),
+            };
+
+            await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            alert("บันทึกข้อมูลเรียบร้อย ขอบคุณครับ");
+            liff.closeWindow();
+        });
     </script>
 </body>
 </html>

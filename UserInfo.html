@@ -2,129 +2,202 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>แบบสอบถามสภาพผิว</title>
     <style>
         body {
             font-family: sans-serif;
             padding: 20px;
+            background: #f7f7f7;
         }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .icon-select {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .icon-option {
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 100px;
+            cursor: pointer;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+            .icon-option.selected {
+                border-color: #007bff;
+                background-color: #e6f0ff;
+            }
+
+            .icon-option img {
+                width: 40px;
+                height: 40px;
+            }
 
         label {
+            font-weight: bold;
             display: block;
-            margin-top: 10px;
+            margin-bottom: 8px;
         }
 
-        .popup {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
+        input[type="range"] {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
         }
 
-        .popup-content {
-            background: white;
-            padding: 20px;
-            max-width: 400px;
-            margin: 10% auto;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-            .popup-content img {
-                width: 80%;
-                margin-bottom: 10px;
-            }
-
-            .popup-content h3 {
-                margin-top: 10px;
-                font-size: 1.1em;
-            }
-
-        .close-btn {
-            margin-top: 15px;
-            padding: 8px 16px;
+        #confirmBtn {
+            padding: 10px 20px;
             background: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 16px;
         }
+
+            #confirmBtn:hover {
+                background: #0056b3;
+            }
     </style>
 </head>
 <body>
-    <h2>โปรดกรอกข้อมูลเพิ่มเติม</h2>
 
-    <form id="userForm">
-        <label>เพศ:</label>
-        <input type="radio" name="gender" value="ชาย"> ชาย
-        <input type="radio" name="gender" value="หญิง"> หญิง
-        <input type="radio" name="gender" value="อื่นๆ"> อื่นๆ
+    <h2>แบบสอบถามข้อมูลผู้ใช้</h2>
 
-        <label for="age">อายุ:</label>
-        <input type="number" name="age" id="age" required>
+    <form id="surveyForm">
 
-        <label>
-            ระดับความมันบนใบหน้า:
-            <button type="button" onclick="showPopup()">ดูตัวอย่าง</button>
-        </label>
-        <input type="radio" name="oil" value="1"> 1
-        <input type="radio" name="oil" value="2"> 2
-        <input type="radio" name="oil" value="3"> 3
-        <input type="radio" name="oil" value="4"> 4
-        <input type="radio" name="oil" value="5"> 5
+        <div class="section">
+            <label>เพศ</label>
+            <div class="icon-select" id="genderSelect">
+                <div class="icon-option" data-value="ชาย">
+                    <img src="https://img.icons8.com/ios-filled/50/male.png" alt="ชาย">
+                    <div>ชาย</div>
+                </div>
+                <div class="icon-option" data-value="หญิง">
+                    <img src="https://img.icons8.com/ios-filled/50/female.png" alt="หญิง">
+                    <div>หญิง</div>
+                </div>
+                <div class="icon-option" data-value="อื่นๆ">
+                    <img src="https://img.icons8.com/ios-filled/50/gender-neutral-user.png" alt="อื่นๆ">
+                    <div>อื่นๆ</div>
+                </div>
+            </div>
+        </div>
 
-        <label>
-            ระดับความแพ้ของผิวหน้า:
-            <a href="https://example.com/allergy-sample.jpg" target="_blank">ดูตัวอย่าง</a>
-        </label>
-        <input type="radio" name="sensitive" value="1"> 1
-        <input type="radio" name="sensitive" value="2"> 2
-        <input type="radio" name="sensitive" value="3"> 3
-        <input type="radio" name="sensitive" value="4"> 4
-        <input type="radio" name="sensitive" value="5"> 5
+        <div class="section">
+            <label>อายุ</label>
+            <input type="number" name="age" min="1" max="120" required>
+        </div>
 
-        <br><br>
-        <button type="submit">Confirm</button>
+        <div class="section">
+            <label>สภาพผิว</label>
+            <div class="icon-select" id="skinTypeSelect">
+                <div class="icon-option" data-value="ผิวแห้ง">
+                    <img src="https://img.icons8.com/ios-filled/50/wind-dry.png" alt="ผิวแห้ง">
+                    <div>ผิวแห้ง</div>
+                </div>
+                <div class="icon-option" data-value="ผิวธรรมดา">
+                    <img src="https://img.icons8.com/ios-filled/50/checked.png" alt="ผิวธรรมดา">
+                    <div>ธรรมดา</div>
+                </div>
+                <div class="icon-option" data-value="ผิวผสม">
+                    <img src="https://img.icons8.com/ios-filled/50/temperature.png" alt="ผิวผสม">
+                    <div>ผิวผสม</div>
+                </div>
+                <div class="icon-option" data-value="ผิวมัน">
+                    <img src="https://img.icons8.com/ios-filled/50/oily-skin.png" alt="ผิวมัน">
+                    <div>ผิวมัน</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <label>ระดับความมันบนใบหน้า: <span id="oilLevelValue">3</span></label>
+            <input type="range" name="oilLevel" min="1" max="5" value="3" oninput="document.getElementById('oilLevelValue').innerText = this.value">
+        </div>
+
+        <div class="section">
+            <label>ระดับความแพ้ง่าย: <span id="sensitiveLevelValue">3</span></label>
+            <input type="range" name="sensitiveLevel" min="1" max="5" value="3" oninput="document.getElementById('sensitiveLevelValue').innerText = this.value">
+        </div>
+
+        <button type="submit" id="confirmBtn">ยืนยัน</button>
+
     </form>
 
-    <!-- 🌟 POPUP ตัวอย่างสภาพผิว -->
-    <div class="popup" id="skinPopup">
-        <div class="popup-content">
-            <h3>ตัวอย่างสภาพผิว</h3>
-            <img src="https://i.imgur.com/fJ5jCoM.jpg" alt="ผิวแห้ง">
-            <p>ผิวแห้ง: ลอกเป็นขุย รู้สึกตึง</p>
-            <img src="https://i.imgur.com/ab2kKtu.jpg" alt="ผิวธรรมดา">
-            <p>ผิวธรรมดา: สมดุล ไม่แห้งหรือมันเกินไป</p>
-            <img src="https://i.imgur.com/Saq9YmO.jpg" alt="ผิวผสม">
-            <p>ผิวผสม: มันบริเวณ T-zone แห้งตรงอื่น</p>
-            <img src="https://i.imgur.com/Lg7bNVc.jpg" alt="ผิวมัน">
-            <p>ผิวมัน: หน้ามันวาว รูขุมขนกว้าง</p>
-            <button class="close-btn" onclick="closePopup()">ปิด</button>
-        </div>
-    </div>
-
     <script>
-        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // 🔁 เปลี่ยนเป็น URL ของคุณ
+        function handleIconSelect(containerId, hiddenName) {
+            const container = document.getElementById(containerId);
+            let selectedValue = "";
 
-        const form = document.getElementById('userForm');
-        form.addEventListener('submit', e => {
+            container.querySelectorAll('.icon-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    container.querySelectorAll('.icon-option').forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    selectedValue = option.getAttribute('data-value');
+                });
+            });
+
+            return () => selectedValue;
+        }
+
+        const getGender = handleIconSelect('genderSelect');
+        const getSkinType = handleIconSelect('skinTypeSelect');
+
+        const form = document.getElementById('surveyForm');
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => alert("ส่งข้อมูลเรียบร้อยแล้ว!"))
-                .catch(error => alert("เกิดข้อผิดพลาด: " + error.message));
+
+            const gender = getGender();
+            const skinType = getSkinType();
+            const age = form.age.value;
+            const oilLevel = form.oilLevel.value;
+            const sensitiveLevel = form.sensitiveLevel.value;
+
+            if (!gender || !skinType) {
+                alert("กรุณาเลือกเพศและสภาพผิว");
+                return;
+            }
+
+            const data = {
+                gender,
+                age,
+                skinType,
+                oilLevel,
+                sensitiveLevel,
+                timestamp: new Date().toISOString()
+            };
+
+            // ส่งไปยัง Google Sheet (ผ่าน Apps Script)
+            try {
+                const res = await fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL", {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                alert("ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณค่ะ!");
+                form.reset();
+                location.href = "thankyou.html"; // เปลี่ยนตามต้องการ
+            } catch (error) {
+                alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
+                console.error(error);
+            }
         });
-
-        function showPopup() {
-            document.getElementById('skinPopup').style.display = 'block';
-        }
-
-        function closePopup() {
-            document.getElementById('skinPopup').style.display = 'none';
-        }
     </script>
 </body>
 </html>

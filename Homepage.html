@@ -3,59 +3,110 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>แบบฟอร์มยินยอม PDPA</title>
+    <title>แบบฟอร์มยินยอม (PDPA)</title>
     <style>
         body {
             font-family: sans-serif;
-            padding: 20px;
+            background-color: #f5f6fa;
             margin: 0;
+            padding: 0;
         }
 
         .container {
-            max-width: 600px;
-            margin: auto;
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        p {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
         }
 
         .btn {
-            padding: 12px 24px;
-            font-size: 16px;
-            background-color: #4CAF50;
+            background-color: #28a745;
             color: white;
             border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
             cursor: pointer;
-            border-radius: 6px;
         }
 
             .btn:disabled {
-                background-color: #aaa;
+                background-color: #ccc;
+                cursor: not-allowed;
             }
 
-        label {
-            display: block;
-            margin-top: 20px;
+        .small-text {
+            font-size: 14px;
+            color: #555;
+            margin-top: 16px;
         }
 
-        #popup {
+        .link-popup {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Popup */
+        .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0,0,0,0.6);
             z-index: 1000;
-            padding: 20px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
-        #popupContent {
+        .modal-content {
             background-color: white;
-            max-height: 80vh;
-            overflow-y: auto;
+            margin: 10% auto;
             padding: 20px;
+            max-width: 90%;
             border-radius: 8px;
+            position: relative;
         }
 
-        @media (max-width: 600px) {
+        .close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 18px;
+            }
+
             .btn {
                 width: 100%;
             }
@@ -65,31 +116,31 @@
 <body>
 
     <div class="container">
-        <h2>แบบฟอร์มยินยอมการใช้ข้อมูลส่วนบุคคล</h2>
+        <h2>แบบฟอร์มยินยอมการใช้ข้อมูลส่วนบุคคล (PDPA)</h2>
         <p>
-            เราขอความยินยอมในการใช้ข้อมูลของคุณ เช่น ชื่อ, รูปถ่าย, และข้อมูลสุขภาพผิว
-            เพื่อให้บริการวิเคราะห์ผิวและแนะนำผลิตภัณฑ์ที่เหมาะสมผ่านระบบ AI
-            ก่อนใช้งานระบบ โปรด <a href="#" onclick="openPopup()">อ่านรายละเอียดเพิ่มเติม</a>
+            เราขอความยินยอมในการใช้ข้อมูลของคุณ เช่น ชื่อ, รูปถ่าย, และข้อมูลสุขภาพผิว เพื่อให้บริการวิเคราะห์ผิวและแนะนำผลิตภัณฑ์ที่เหมาะสมผ่านระบบ AI
+            <br />
+            <span class="link-popup" onclick="openModal()">[อ่านรายละเอียดทั้งหมด]</span>
         </p>
 
-        <label>
-            <input type="checkbox" id="consentCheckbox" onchange="toggleButton()">
-            ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ข้างต้น
-        </label>
+        <div class="checkbox-container">
+            <input type="checkbox" id="consentCheck" onchange="toggleButton()" />
+            <label for="consentCheck">ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ข้างต้น</label>
+        </div>
 
-        <button id="nextBtn" class="btn" disabled onclick="goNext()">ถัดไป</button>
+        <button class="btn" id="nextBtn" disabled onclick="goNext()">ถัดไป</button>
+
+        <p class="small-text">คุณสามารถถอนความยินยอมได้ภายหลังโดยติดต่อผ่าน LINE OA</p>
     </div>
 
-    <!-- POPUP -->
-    <div id="popup">
-        <div id="popupContent">
-            <h3>ประกาศเรื่องการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคล</h3>
+    <!-- Modal -->
+    <div id="consentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <h3>รายละเอียดการยินยอม</h3>
             <p>
-                <strong>เพื่อให้เป็นไปตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)</strong> ทางบริษัท/ผู้ให้บริการ ขอแจ้งให้ท่านทราบว่า...
-                <!-- ย่อไว้เพื่อไม่รก สามารถใส่เต็มได้ -->
-                <br><br>
-                ข้อมูลส่วนบุคคลของท่านที่เราได้รับ จะถูกเก็บรวบรวม ใช้ และเปิดเผย ภายใต้หลักเกณฑ์ดังนี้<br><br>
-
+                เพื่อให้เป็นไปตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) ทางบริษัท/ผู้ให้บริการ ขอแจ้งให้ท่านทราบว่า
+                ข้อมูลส่วนบุคคลของท่านที่เราได้รับ จะถูกเก็บรวบรวม ใช้ และเปิดเผย ภายใต้หลักเกณฑ์ดังนี้ <br><br>
                 <strong>1. ข้อมูลส่วนบุคคลที่เราเก็บรวบรวม</strong><br>
                 เราจะเก็บข้อมูลต่อไปนี้เมื่อท่านใช้บริการผ่าน LINE OA หรือระบบวิเคราะห์ภาพของเรา:<br>
                 - ชื่อ-นามสกุล<br>
@@ -128,29 +179,37 @@
                 - หากท่านมีคำถามเกี่ยวกับนโยบายนี้ หรือต้องการใช้สิทธิของเจ้าของข้อมูล กรุณาติดต่อ : <br>
                 ฝ่ายดูแลข้อมูลส่วนบุคคล  <br>
                 [G-ANGLE] <br>
-                อีเมล: G-ANGLE@g-able.com <br>
+                อีเมล: perapong.m@g-able.com <br>
                 เบอร์โทร: 0xx-xxx-xxxx <br>
-                หรือ LINE OA: @AIDAGANGLE <br>
+                หรือ LINE OA: @yourlineid <br>
             </p>
-            <br>
-            <button class="btn" onclick="closePopup()">ปิด</button>
         </div>
     </div>
 
     <script>
-        function openPopup() {
-            document.getElementById("popup").style.display = "block";
-        }
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
-        }
         function toggleButton() {
-            const check = document.getElementById("consentCheckbox").checked;
-            document.getElementById("nextBtn").disabled = !check;
+            const checkbox = document.getElementById('consentCheck');
+            document.getElementById('nextBtn').disabled = !checkbox.checked;
         }
+
         function goNext() {
-            // เปลี่ยน URL ไปยังหน้าถัดไป
-            window.location.href = "Userinfo.html";
+            window.location.href = "UserInfo.html"; // เปลี่ยนเป็น path ของหน้าถัดไป
+        }
+
+        function openModal() {
+            document.getElementById('consentModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('consentModal').style.display = 'none';
+        }
+
+        // Close modal if click outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('consentModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
 

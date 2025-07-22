@@ -71,6 +71,7 @@
             cursor: pointer;
             text-decoration: underline;
         }
+
         /* Popup */
         .modal {
             display: none;
@@ -105,7 +106,6 @@
             color: #888;
             cursor: pointer;
         }
-
         @media (max-width: 480px) {
             h2 {
                 font-size: 18px;
@@ -132,7 +132,7 @@
             <label for="consentCheck">ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ข้างต้น</label>
         </div>
 
-        <button class="btn" id="nextBtn" onclick="goNext()">ถัดไป</button>
+        <button class="btn" id="nextBtn" disabled onclick="goNext()">ถัดไป</button>
 
         <p class="small-text">คุณสามารถถอนความยินยอมได้ภายหลังโดยติดต่อผ่าน LINE OA</p>
     </div>
@@ -189,14 +189,15 @@
             </p>
         </div>
     </div>
+
     <script>
         function toggleButton() {
             const checkbox = document.getElementById('consentCheck');
-            // document.getElementById('nextBtn').disabled = !checkbox.checked;
+            document.getElementById('nextBtn').disabled = !checkbox.checked;
         }
 
         function goNext() {
-            window.location.href = "./UserInfo.html"; // เปลี่ยนเป็น path ของหน้าถัดไป
+            window.location.href = "form.html"; // เปลี่ยนเป็น path ของหน้าถัดไป
         }
 
         function openModal() {

@@ -1,89 +1,220 @@
-﻿<style>
-    /* Popup */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        overflow-y: auto;
-        padding: 40px 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>แบบฟอร์มยินยอม (PDPA)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f5f6fa;
+            margin: 0;
+            padding: 0;
+        }
 
-    .modal-content {
-        background-color: white;
-        width: 100%;
-        max-width: 500px;
-        max-height: 90vh;
-        padding: 24px;
-        border-radius: 16px;
-        position: relative;
-        overflow-y: auto;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
 
-    .close {
-        position: absolute;
-        top: 12px;
-        right: 16px;
-        font-size: 24px;
-        color: #888;
-        cursor: pointer;
-    }
-</style>
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
 
-<!-- Modal -->
-<div id="consentModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">×</span>
-        <h3>รายละเอียดการยินยอม</h3>
+        p {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+            .btn:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+            }
+
+        .small-text {
+            font-size: 14px;
+            color: #555;
+            margin-top: 16px;
+        }
+
+        .link-popup {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        /* Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+            padding: 40px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            padding: 24px;
+            border-radius: 16px;
+            position: relative;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 18px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>แบบฟอร์มยินยอมการใช้ข้อมูลส่วนบุคคล (PDPA)</h2>
         <p>
-            เพื่อให้เป็นไปตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) ทางบริษัท/ผู้ให้บริการ ขอแจ้งให้ท่านทราบว่า
-            ข้อมูลส่วนบุคคลของท่านที่เราได้รับ จะถูกเก็บรวบรวม ใช้ และเปิดเผย ภายใต้หลักเกณฑ์ดังนี้ <br><br>
-            <strong>1. ข้อมูลส่วนบุคคลที่เราเก็บรวบรวม</strong><br>
-            เราจะเก็บข้อมูลต่อไปนี้เมื่อท่านใช้บริการผ่าน LINE OA หรือระบบวิเคราะห์ภาพของเรา:<br>
-            - ชื่อ-นามสกุล<br>
-            - เพศ<br>
-            - อายุ<br>
-            - รูปภาพที่ท่านส่งเข้ามา (เช่น ภาพผิวหน้า หรือร่างกาย)<br>
-            - ข้อมูลที่เกี่ยวกับผลการวิเคราะห์
-            - ข้อมูลผู้ใช้งาน LINE เช่น LINE User ID, ชื่อใน LINE, รูปโปรไฟล์ (ถ้ามี)<br>
-            - วันเวลา และประวัติการใช้งานระบบ<br>
-
-            <strong>2. วัตถุประสงค์ในการใช้ข้อมูล</strong><br>
-            - วิเคราะห์ภาพที่ท่านส่งเข้ามาโดยใช้ระบบ AI<br>
-            - แนะนำสินค้า บริการ หรือแนวทางดูแลสุขภาพ/ผิวพรรณ (ถ้ามี)<br>
-            - ปรับปรุงประสบการณ์การใช้งานให้เหมาะสมยิ่งขึ้น<br>
-            - ติดต่อกลับในกรณีจำเป็น<br>
-
-            <strong>3. ระยะเวลาในการเก็บรักษาข้อมูล</strong><br>
-            - ข้อมูลส่วนบุคคลจะถูกเก็บไว้ ไม่เกินระยะเวลาที่จำเป็น<br>
-            - เพื่อวัตถุประสงค์ที่ระบุไว้ หรือจนกว่าท่านจะร้องขอให้ลบข้อมูล<br>
-
-            <strong>4. การเปิดเผยข้อมูล</strong><br>
-            - เราจะไม่เปิดเผยข้อมูลของท่านให้บุคคลภายนอก เว้นแต่ : <br>
-            ได้รับความยินยอมจากท่าน<br>
-            เป็นไปตามข้อกฎหมาย หรือคำสั่งของหน่วยงานราชการ
-
-            <strong>5. สิทธิของเจ้าของข้อมูล</strong><br>
-            - ท่านมีสิทธิ : ขอเข้าถึง / แก้ไข / ถอนความยินยอม <br>
-            ในการเก็บ ใช้ หรือเปิดเผยข้อมูล ขอให้ลบ หรือทำลายข้อมูลส่วนบุคคล<br>
-            โดยสามารถติดต่อเราได้ตามช่องทางที่ระบุไว้ <br>
-
-            <strong>6. มาตรการรักษาความปลอดภัย</strong><br>
-            - เราดำเนินการรักษาความมั่นคงปลอดภัยของข้อมูลของท่าน ด้วยมาตรการทางเทคนิคและองค์กร เช่น การเข้ารหัส (encryption),
-            การจำกัดการเข้าถึง, และการควบคุมผู้ใช้งานระบบอย่างเหมาะสม<br>
-
-            <strong>7. ช่องทางติดต่อ</strong><br>
-            - หากท่านมีคำถามเกี่ยวกับนโยบายนี้ หรือต้องการใช้สิทธิของเจ้าของข้อมูล กรุณาติดต่อ : <br>
-            ฝ่ายดูแลข้อมูลส่วนบุคคล  <br>
-            [G-ANGLE] <br>
-            อีเมล: perapong.m@g-able.com <br>
-            เบอร์โทร: 0xx-xxx-xxxx <br>
-            หรือ LINE OA: @yourlineid <br>
+            เราขอความยินยอมในการใช้ข้อมูลของคุณ เช่น ชื่อ, รูปถ่าย, และข้อมูลสุขภาพผิว เพื่อให้บริการวิเคราะห์ผิวและแนะนำผลิตภัณฑ์ที่เหมาะสมผ่านระบบ AI
+            <br />
+            <span class="link-popup" onclick="openModal()">[อ่านรายละเอียดทั้งหมด]</span>
         </p>
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="consentCheck" onchange="toggleButton()" />
+            <label for="consentCheck">ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ข้างต้น</label>
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="goNext()">ถัดไป</button>
+
+        <p class="small-text">คุณสามารถถอนความยินยอมได้ภายหลังโดยติดต่อผ่าน LINE OA</p>
     </div>
-</div>
+
+    <!-- Modal -->
+    <div id="consentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <h3>รายละเอียดการยินยอม</h3>
+            <p>
+                เพื่อให้เป็นไปตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) ทางบริษัท/ผู้ให้บริการ ขอแจ้งให้ท่านทราบว่า
+                ข้อมูลส่วนบุคคลของท่านที่เราได้รับ จะถูกเก็บรวบรวม ใช้ และเปิดเผย ภายใต้หลักเกณฑ์ดังนี้ <br><br>
+                <strong>1. ข้อมูลส่วนบุคคลที่เราเก็บรวบรวม</strong><br>
+                เราจะเก็บข้อมูลต่อไปนี้เมื่อท่านใช้บริการผ่าน LINE OA หรือระบบวิเคราะห์ภาพของเรา:<br>
+                - ชื่อ-นามสกุล<br>
+                - เพศ<br>
+                - อายุ<br>
+                - รูปภาพที่ท่านส่งเข้ามา (เช่น ภาพผิวหน้า หรือร่างกาย)<br>
+                - ข้อมูลที่เกี่ยวกับผลการวิเคราะห์
+                - ข้อมูลผู้ใช้งาน LINE เช่น LINE User ID, ชื่อใน LINE, รูปโปรไฟล์ (ถ้ามี)<br>
+                - วันเวลา และประวัติการใช้งานระบบ<br>
+
+                <strong>2. วัตถุประสงค์ในการใช้ข้อมูล</strong><br>
+                - วิเคราะห์ภาพที่ท่านส่งเข้ามาโดยใช้ระบบ AI<br>
+                - แนะนำสินค้า บริการ หรือแนวทางดูแลสุขภาพ/ผิวพรรณ (ถ้ามี)<br>
+                - ปรับปรุงประสบการณ์การใช้งานให้เหมาะสมยิ่งขึ้น<br>
+                - ติดต่อกลับในกรณีจำเป็น<br>
+
+                <strong>3. ระยะเวลาในการเก็บรักษาข้อมูล</strong><br>
+                - ข้อมูลส่วนบุคคลจะถูกเก็บไว้ ไม่เกินระยะเวลาที่จำเป็น<br>
+                - เพื่อวัตถุประสงค์ที่ระบุไว้ หรือจนกว่าท่านจะร้องขอให้ลบข้อมูล<br>
+
+                <strong>4. การเปิดเผยข้อมูล</strong><br>
+                - เราจะไม่เปิดเผยข้อมูลของท่านให้บุคคลภายนอก เว้นแต่ : <br>
+                ได้รับความยินยอมจากท่าน<br>
+                เป็นไปตามข้อกฎหมาย หรือคำสั่งของหน่วยงานราชการ
+
+                <strong>5. สิทธิของเจ้าของข้อมูล</strong><br>
+                - ท่านมีสิทธิ : ขอเข้าถึง / แก้ไข / ถอนความยินยอม <br>
+                ในการเก็บ ใช้ หรือเปิดเผยข้อมูล ขอให้ลบ หรือทำลายข้อมูลส่วนบุคคล<br>
+                โดยสามารถติดต่อเราได้ตามช่องทางที่ระบุไว้ <br>
+
+                <strong>6. มาตรการรักษาความปลอดภัย</strong><br>
+                - เราดำเนินการรักษาความมั่นคงปลอดภัยของข้อมูลของท่าน ด้วยมาตรการทางเทคนิคและองค์กร เช่น การเข้ารหัส (encryption),
+                การจำกัดการเข้าถึง, และการควบคุมผู้ใช้งานระบบอย่างเหมาะสม<br>
+
+                <strong>7. ช่องทางติดต่อ</strong><br>
+                - หากท่านมีคำถามเกี่ยวกับนโยบายนี้ หรือต้องการใช้สิทธิของเจ้าของข้อมูล กรุณาติดต่อ : <br>
+                ฝ่ายดูแลข้อมูลส่วนบุคคล  <br>
+                [G-ANGLE] <br>
+                อีเมล: perapong.m@g-able.com <br>
+                เบอร์โทร: 0xx-xxx-xxxx <br>
+                หรือ LINE OA: @yourlineid <br>
+            </p>
+        </div>
+    </div>
+    <script>
+        function toggleButton() {
+            const checkbox = document.getElementById('consentCheck');
+            // document.getElementById('nextBtn').disabled = !checkbox.checked;
+        }
+
+        function goNext() {
+            window.location.href = "./UserInfo.html"; // เปลี่ยนเป็น path ของหน้าถัดไป
+        }
+
+        function openModal() {
+            document.getElementById('consentModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('consentModal').style.display = 'none';
+        }
+
+        // Close modal if click outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('consentModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

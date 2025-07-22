@@ -7,9 +7,20 @@
     <style>
         body {
             font-family: sans-serif;
-            padding: 20px;
-            background: #f7f7f7;
+            background-color: #f5f6fa;
+            margin: 0;
+            padding: 0;
         }
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
 
         h2 {
             margin-top: 0;
@@ -129,184 +140,189 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <h2>แบบสอบถามข้อมูลผู้ใช้</h2>
 
-    <h2>แบบสอบถามข้อมูลผู้ใช้</h2>
+        <form id="surveyForm">
 
-    <form id="surveyForm">
-
-        <div class="section">
-            <label>เพศ</label>
-            <div class="icon-select" id="genderSelect">
-                <div class="icon-option" data-value="ชาย">
-                    <img src="./Pic/icons8-male-100.png" alt="ชาย">
-                    <div>ชาย</div>
-                </div>
-                <div class="icon-option" data-value="หญิง">
-                    <img src="./Pic/icons8-female-100.png" alt="หญิง">
-                    <div>หญิง</div>
-                </div>
-                <div class="icon-option" data-value="อื่นๆ">
-                    <img src="./Pic/icons8-agender-symbol-100.png" alt="อื่นๆ">
-                    <div>อื่นๆ</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <label>อายุ</label>
-            <input type="number" name="age" min="1" max="120" required>
-        </div>
-
-        <div class="section">
-            <label>สภาพผิว</label>
-            <button type="button" onclick="openModal()">ดูตัวอย่าง</button>
-            <div class="icon-select" id="skinTypeSelect">
-                <div class="icon-option" data-value="ผิวแห้ง">
-                    <img src="./Pic/icons8-dry-skin-64.png" alt="ผิวแห้ง">
-                    <div>ผิวแห้ง</div>
-                </div>
-                <div class="icon-option" data-value="ผิวธรรมดา">
-                    <img src="./Pic/icons8-normal-skin-64.png" alt="ผิวธรรมดา">
-                    <div>ธรรมดา</div>
-                </div>
-                <div class="icon-option" data-value="ผิวผสม">
-                    <img src="./Pic/icons8-combination-skin-50.png" alt="ผิวผสม">
-                    <div>ผิวผสม</div>
-                </div>
-                <div class="icon-option" data-value="ผิวมัน">
-                    <img src="./Pic/icons8-oily-skin-100.png" alt="ผิวมัน">
-                    <div>ผิวมัน</div>
+            <div class="section">
+                <label>เพศ</label>
+                <div class="icon-select" id="genderSelect">
+                    <div class="icon-option" data-value="ชาย">
+                        <img src="./Pic/icons8-male-100.png" alt="ชาย">
+                        <div>ชาย</div>
+                    </div>
+                    <div class="icon-option" data-value="หญิง">
+                        <img src="./Pic/icons8-female-100.png" alt="หญิง">
+                        <div>หญิง</div>
+                    </div>
+                    <div class="icon-option" data-value="อื่นๆ">
+                        <img src="./Pic/icons8-agender-symbol-100.png" alt="อื่นๆ">
+                        <div>อื่นๆ</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Modal -->
-        <div id="skinModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h3>ตัวอย่างสภาพผิว</h3>
+            <div class="section">
+                <label>อายุ</label>
+                <input type="number" name="age" min="1" max="120" required>
+            </div>
 
-                <div class="skin-example">
-                    <strong>สภาพผิว</strong>
-                    <img src="./Pic/skinface.png" alt="สภาพผิว">
-                </div>
-
-                <div class="skin-example">
-                    <strong>ผิวแห้ง</strong>
-                    <img src="./Pic/dry.png" alt="ผิวแห้ง">
-                </div>
-
-                <div class="skin-example">
-                    <strong>ผิวธรรมดา</strong>
-                    <img src="./Pic/normal.png" alt="ผิวธรรมดา">
-                </div>
-
-                <div class="skin-example">
-                    <strong>ผิวผสม</strong>
-                    <img src="./Pic/combile.png" alt="ผิวผสม">
-                </div>
-
-                <div class="skin-example">
-                    <strong>ผิวมัน</strong>
-                    <img src="./Pic/oily.png" alt="ผิวมัน">
-                </div>
-                <div>
-                    <button type="button" onclick="closeModal()">Close</button>
+            <div class="section">
+                <label>สภาพผิว</label>
+                <button type="button" onclick="openModal()">ดูตัวอย่าง</button>
+                <div class="icon-select" id="skinTypeSelect">
+                    <div class="icon-option" data-value="ผิวแห้ง">
+                        <img src="./Pic/icons8-dry-skin-64.png" alt="ผิวแห้ง">
+                        <div>ผิวแห้ง</div>
+                    </div>
+                    <div class="icon-option" data-value="ผิวธรรมดา">
+                        <img src="./Pic/icons8-normal-skin-64.png" alt="ผิวธรรมดา">
+                        <div>ธรรมดา</div>
+                    </div>
+                    <div class="icon-option" data-value="ผิวผสม">
+                        <img src="./Pic/icons8-combination-skin-50.png" alt="ผิวผสม">
+                        <div>ผิวผสม</div>
+                    </div>
+                    <div class="icon-option" data-value="ผิวมัน">
+                        <img src="./Pic/icons8-oily-skin-100.png" alt="ผิวมัน">
+                        <div>ผิวมัน</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <script>
-            function openModal() {
-                document.getElementById("skinModal").style.display = "block";
-            }
+            <!-- Modal -->
+            <div id="skinModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h3>ตัวอย่างสภาพผิว</h3>
 
-            function closeModal() {
-                document.getElementById("skinModal").style.display = "none";
-            }
+                    <div class="skin-example">
+                        <strong>สภาพผิว</strong>
+                        <img src="./Pic/skinface.png" alt="สภาพผิว">
+                    </div>
 
-            // ปิด modal ถ้ากดนอกกล่อง
-            window.onclick = function (event) {
-                const modal = document.getElementById("skinModal");
-                if (event.target === modal) {
-                    modal.style.display = "none";
+                    <div class="skin-example">
+                        <strong>ผิวแห้ง</strong>
+                        <img src="./Pic/dry.png" alt="ผิวแห้ง">
+                    </div>
+
+                    <div class="skin-example">
+                        <strong>ผิวธรรมดา</strong>
+                        <img src="./Pic/normal.png" alt="ผิวธรรมดา">
+                    </div>
+
+                    <div class="skin-example">
+                        <strong>ผิวผสม</strong>
+                        <img src="./Pic/combile.png" alt="ผิวผสม">
+                    </div>
+
+                    <div class="skin-example">
+                        <strong>ผิวมัน</strong>
+                        <img src="./Pic/oily.png" alt="ผิวมัน">
+                    </div>
+                    <div>
+                        <button type="button" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openModal() {
+                    document.getElementById("skinModal").style.display = "block";
                 }
-            }
-        </script>
+
+                function closeModal() {
+                    document.getElementById("skinModal").style.display = "none";
+                }
+
+                // ปิด modal ถ้ากดนอกกล่อง
+                window.onclick = function (event) {
+                    const modal = document.getElementById("skinModal");
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
 
 
 
-        <div class="section">
-            <label>ระดับความแพ้ง่าย: <span id="sensitiveLevelValue">3</span></label>
-            <input type="range" name="sensitiveLevel" min="1" max="5" value="3" oninput="document.getElementById('sensitiveLevelValue').innerText = this.value">
-        </div>
+            <div class="section">
+                <label>ระดับความแพ้ง่าย: <span id="sensitiveLevelValue">3</span></label>
+                <input type="range" name="sensitiveLevel" min="1" max="5" value="3" oninput="document.getElementById('sensitiveLevelValue').innerText = this.value">
+            </div>
 
-        <button type="submit" id="confirmBtn">ยืนยัน</button>
+            <button type="submit" id="confirmBtn">ยืนยัน</button>
 
-    </form>
+        </form>
+    </div>
+        <script>
+            function handleIconSelect(containerId, hiddenName) {
+                const container = document.getElementById(containerId);
+                let selectedValue = "";
 
-    <script>
-        function handleIconSelect(containerId, hiddenName) {
-            const container = document.getElementById(containerId);
-            let selectedValue = "";
-
-            container.querySelectorAll('.icon-option').forEach(option => {
-                option.addEventListener('click', () => {
-                    container.querySelectorAll('.icon-option').forEach(opt => opt.classList.remove('selected'));
-                    option.classList.add('selected');
-                    selectedValue = option.getAttribute('data-value');
+                container.querySelectorAll('.icon-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        container.querySelectorAll('.icon-option').forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        selectedValue = option.getAttribute('data-value');
+                    });
                 });
+
+                return () => selectedValue;
+            }
+
+            const getGender = handleIconSelect('genderSelect');
+            const getSkinType = handleIconSelect('skinTypeSelect');
+
+            const form = document.getElementById('surveyForm');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const gender = getGender();
+                const skinType = getSkinType();
+                const age = form.age.value;
+                const oilLevel = form.oilLevel.value;
+                const sensitiveLevel = form.sensitiveLevel.value;
+
+                if (!gender || !skinType) {
+                    alert("กรุณาเลือกเพศและสภาพผิว");
+                    return;
+                }
+
+                const data = {
+                    gender,
+                    age,
+                    skinType,
+                    oilLevel,
+                    sensitiveLevel,
+                    timestamp: new Date().toISOString()
+                };
+
+                // ส่งไปยัง Google Sheet (ผ่าน Apps Script)
+                try {
+                    const res = await fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL", {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    alert("ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณค่ะ!");
+                    form.reset();
+                    location.href = "thankyou.html"; // เปลี่ยนตามต้องการ
+                } catch (error) {
+                    alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
+                    console.error(error);
+                }
             });
 
-            return () => selectedValue;
-        }
-
-        const getGender = handleIconSelect('genderSelect');
-        const getSkinType = handleIconSelect('skinTypeSelect');
-
-        const form = document.getElementById('surveyForm');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const gender = getGender();
-            const skinType = getSkinType();
-            const age = form.age.value;
-            const oilLevel = form.oilLevel.value;
-            const sensitiveLevel = form.sensitiveLevel.value;
-
-            if (!gender || !skinType) {
-                alert("กรุณาเลือกเพศและสภาพผิว");
-                return;
-            }
-
-            const data = {
-                gender,
-                age,
-                skinType,
-                oilLevel,
-                sensitiveLevel,
-                timestamp: new Date().toISOString()
+            window.onload = function () {
+                closeModal(); // ปิดให้แน่ใจตอนโหลด
             };
 
-            // ส่งไปยัง Google Sheet (ผ่าน Apps Script)
-            try {
-                const res = await fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL", {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                alert("ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณค่ะ!");
-                form.reset();
-                location.href = "thankyou.html"; // เปลี่ยนตามต้องการ
-            } catch (error) {
-                alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
-                console.error(error);
-            }
-        });
-    </script>
+        </script>
 </body>
 </html>

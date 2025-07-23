@@ -170,7 +170,7 @@
 
             <div class="section">
                 <label>สภาพผิว</label>
-                <button type="submit" onclick="openModal()">ดูตัวอย่าง</button>
+                <button type="submit" onclick="openSkinModal()">ดูตัวอย่าง</button>
                 <div class="icon-select" id="skinTypeSelect">
                     <div class="icon-option" data-value="ผิวแห้ง">
                         <img src="./Pic/icons8-dry-skin-64.png" alt="ผิวแห้ง">
@@ -222,18 +222,18 @@
                         <img src="./Pic/oily.png" alt="ผิวมัน">
                     </div>
                     <div>
-                        <button type="submit" onclick="closeModal()">Close</button>
+                        <button type="submit" onclick="closeSkinModal()">Close</button>
                     </div>
                 </div>
             </div>
 
             <script>
 
-                function openModal() {
+                function openSkinModal() {
                     document.getElementById("skinModal").style.display = "block";
                 }
 
-                function closeModal() {
+                function closeSkinModal() {
                     document.getElementById("skinModal").style.display = "none";
                 }
 
@@ -251,14 +251,14 @@
 
             <div class="section">
                 <label>ระดับความแพ้ง่าย: <span id="sensitiveLevelValue">3</span></label>
-                <button type="submit" onclick="openModal()">ตัวอย่างระดับผิวแพ้ง่าย</button>
+                <button type="submit" onclick="openSensitiveModal()">ตัวอย่างระดับผิวแพ้ง่าย</button>
                 <input type="range" name="sensitiveLevel" min="1" max="5" value="3" oninput="document.getElementById('sensitiveLevelValue').innerText = this.value">
             </div>
 
             <!-- Modal -->
-            <div id="skinExample" class="modal">
+            <div id="sensitiveExample" class="modal">
                 <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
+                    <span class="close" onclick="closeSensitiveModal()">&times;</span>
                     <h3>ตัวอย่างระดับความแพ้ง่าย</h3>
 
                     <div class="modal-body">
@@ -304,17 +304,17 @@
 
             <script>
 
-                function openModal() {
-                    document.getElementById("skinExample").style.display = "block";
+                function openSensitiveModal() {
+                    document.getElementById("sensitiveExample").style.display = "block";
                 }
 
-                function closeModal() {
-                    document.getElementById("skinExample").style.display = "none";
+                function closeSensitiveModal() {
+                    document.getElementById("sensitiveExample").style.display = "none";
                 }
 
                 // ปิด modal ถ้ากดนอกกล่อง
                 window.onclick = function (event) {
-                    const modal = document.getElementById("skinExample");
+                    const modal = document.getElementById("sensitiveExample");
                     if (event.target === modal) {
                         modal.style.display = "none";
                     }

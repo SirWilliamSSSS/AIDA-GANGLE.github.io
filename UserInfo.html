@@ -38,7 +38,7 @@
 
         .icon-option {
             border: 2px solid transparent;
-            border-radius: 10px;
+            border-radius: 5px;
             padding: 10px;
             text-align: center;
             width: 100px;
@@ -92,7 +92,6 @@
             background-color: rgba(0, 0, 0, 0.5);
             overflow-y: auto;
             padding: 40px 16px;
-            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -133,7 +132,7 @@
 
             .skin-example img {
                 width: 100%;
-                border-radius: 8px;
+                border-radius: 5px;
                 margin-top: 5px;
             }
 
@@ -146,7 +145,7 @@
         <form id="surveyForm">
 
             <div class="section">
-                <label>เพศ</label>
+                <label>เพศ :</label>
                 <div class="icon-select" id="genderSelect">
                     <div class="icon-option" data-value="ชาย">
                         <img src="./Pic/icons8-male-100.png" alt="ชาย">
@@ -164,12 +163,12 @@
             </div>
 
             <div class="section">
-                <label>อายุ</label>
+                <label>อายุ :</label>
                 <input type="number" name="age" min="1" max="120" required>
             </div>
 
             <div class="section">
-                <label>สภาพผิว</label>
+                <label>สภาพผิว :</label>
                 <button type="submit" onclick="openSkinModal()">ดูตัวอย่าง</button>
                 <div class="icon-select" id="skinTypeSelect">
                     <div class="icon-option" data-value="ผิวแห้ง">
@@ -177,7 +176,7 @@
                         <div>ผิวแห้ง</div>
                     </div>
                     <div class="icon-option" data-value="ผิวธรรมดา">
-                        <img src="./Pic/icons8-normal-skin-64.png" alt="ผิวธรรมดา">
+                        <img src="./Pic/icons8-normal-skin-64.png" alt="ผิวธรรมดา"> <br>
                         <div>ธรรมดา</div>
                     </div>
                     <div class="icon-option" data-value="ผิวผสม">
@@ -250,7 +249,7 @@
 
 
             <div class="section">
-                <label>ระดับความแพ้ง่าย: <span id="sensitiveLevelValue">3</span></label>
+                <label>ระดับความแพ้ง่าย : <span id="sensitiveLevelValue"> 3 </span></label>
                 <button type="submit" onclick="openSensitiveModal()">ตัวอย่างระดับผิวแพ้ง่าย</button>
                 <input type="range" name="sensitiveLevel" min="1" max="5" value="3" oninput="document.getElementById('sensitiveLevelValue').innerText = this.value">
             </div>
@@ -319,6 +318,7 @@
                         modal.style.display = "none";
                     }
                 }
+
 
             </script>
 

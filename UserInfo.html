@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>แบบสอบถามสภาพผิว</title>
     <style>
         body {
@@ -18,9 +18,8 @@
             background: #fff;
             padding: 24px;
             border-radius: 16px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         }
-
 
         h2 {
             margin-top: 0;
@@ -81,8 +80,6 @@
                 background: #0056b3;
             }
 
-
-
         /* Popup */
         .modal {
             display: none;
@@ -105,7 +102,7 @@
             border-radius: 16px;
             position: relative;
             overflow-y: auto;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
         .close {
@@ -126,16 +123,21 @@
                 width: 100%;
             }
         }
+
         .skin-example {
             margin-bottom: 20px;
         }
 
-            .skin-example img {
-                width: 100%;
-                border-radius: 5px;
-                margin-top: 5px;
-            }
+        .sensitive-exam-button {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
 
+        .skin-example img {
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -143,20 +145,20 @@
         <h2>แบบสอบถามข้อมูลผู้ใช้</h2>
 
         <form id="surveyForm">
-
             <div class="section">
                 <label>เพศ :</label>
+
                 <div class="icon-select" id="genderSelect">
                     <div class="icon-option" data-value="ชาย">
-                        <img src="./Pic/icons8-male-100.png" alt="ชาย">
+                        <img src="./Pic/icons8-male-100.png" alt="ชาย" />
                         <div>ชาย</div>
                     </div>
                     <div class="icon-option" data-value="หญิง">
-                        <img src="./Pic/icons8-female-100.png" alt="หญิง">
+                        <img src="./Pic/icons8-female-100.png" alt="หญิง" />
                         <div>หญิง</div>
                     </div>
                     <div class="icon-option" data-value="อื่นๆ">
-                        <img src="./Pic/icons8-agender-symbol-100.png" alt="อื่นๆ">
+                        <img src="./Pic/icons8-agender-symbol-100.png" alt="อื่นๆ" />
                         <div>อื่นๆ</div>
                     </div>
                 </div>
@@ -164,28 +166,37 @@
 
             <div class="section">
                 <label>อายุ :</label>
-                <input type="number" name="age" min="1" max="120" required>
+                <input type="number" name="age" min="1" max="150" required />
             </div>
 
             <div class="section">
                 <label>สภาพผิว :</label>
-                <button type="submit" onclick="openSkinModal()">ดูตัวอย่าง</button>
-                <div class="icon-select" id="skinTypeSelect">
-                    <div class="icon-option" data-value="ผิวแห้ง">
-                        <img src="./Pic/icons8-dry-skin-64.png" alt="ผิวแห้ง">
-                        <div>ผิวแห้ง</div>
+                <button class="sensitive-exam-button"
+                        type="submit"
+                        onclick="openSkinModal()">
+                    ดูตัวอย่าง
+                </button>
+                <div id="skinTypeSelect">
+                    <div class="icon-select">
+                        <div class="icon-option" data-value="ผิวแห้ง">
+                            <img src="./Pic/icons8-dry-skin-64.png" alt="ผิวแห้ง" />
+                            <div>ผิวแห้ง</div>
+                        </div>
+                        <div class="icon-option" data-value="ผิวธรรมดา">
+                            <img src="./Pic/icons8-normal-skin-64.png" alt="ผิวธรรมดา" />
+
+                            <div>ธรรมดา</div>
+                        </div>
                     </div>
-                    <div class="icon-option" data-value="ผิวธรรมดา">
-                        <img src="./Pic/icons8-normal-skin-64.png" alt="ผิวธรรมดา"> <br>
-                        <div>ธรรมดา</div>
-                    </div>
-                    <div class="icon-option" data-value="ผิวผสม">
-                        <img src="./Pic/icons8-combination-skin-50.png" alt="ผิวผสม">
-                        <div>ผิวผสม</div>
-                    </div>
-                    <div class="icon-option" data-value="ผิวมัน">
-                        <img src="./Pic/icons8-oily-skin-100.png" alt="ผิวมัน">
-                        <div>ผิวมัน</div>
+                    <div class="icon-select">
+                        <div class="icon-option" data-value="ผิวผสม">
+                            <img src="./Pic/icons8-combination-skin-50.png" alt="ผิวผสม" />
+                            <div>ผิวผสม</div>
+                        </div>
+                        <div class="icon-option" data-value="ผิวมัน">
+                            <img src="./Pic/icons8-oily-skin-100.png" alt="ผิวมัน" />
+                            <div>ผิวมัน</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -198,27 +209,27 @@
 
                     <div class="skin-example">
                         <strong>สภาพผิว</strong>
-                        <img src="./Pic/skinface.png" alt="สภาพผิว">
+                        <img src="./Pic/skinface.png" alt="สภาพผิว" />
                     </div>
 
                     <div class="skin-example">
                         <strong>ผิวแห้ง</strong>
-                        <img src="./Pic/dry.png" alt="ผิวแห้ง">
+                        <img src="./Pic/dry.png" alt="ผิวแห้ง" />
                     </div>
 
                     <div class="skin-example">
                         <strong>ผิวธรรมดา</strong>
-                        <img src="./Pic/normal.png" alt="ผิวธรรมดา">
+                        <img src="./Pic/normal.png" alt="ผิวธรรมดา" />
                     </div>
 
                     <div class="skin-example">
                         <strong>ผิวผสม</strong>
-                        <img src="./Pic/combile.png" alt="ผิวผสม">
+                        <img src="./Pic/combile.png" alt="ผิวผสม" />
                     </div>
 
                     <div class="skin-example">
                         <strong>ผิวมัน</strong>
-                        <img src="./Pic/oily.png" alt="ผิวมัน">
+                        <img src="./Pic/oily.png" alt="ผิวมัน" />
                     </div>
                     <div>
                         <button type="submit" onclick="closeSkinModal()">Close</button>
@@ -227,9 +238,8 @@
             </div>
 
             <script>
-
                 function openSkinModal() {
-                    document.getElementById("skinModal").style.display = "block";
+                    document.getElementById("skinModal").style.display = "flex";
                 }
 
                 function closeSkinModal() {
@@ -242,16 +252,23 @@
                     if (event.target === modal) {
                         modal.style.display = "none";
                     }
-                }
-
+                };
             </script>
-
-
 
             <div class="section">
                 <label>ระดับความแพ้ง่าย : <span id="sensitiveLevelValue"> 3 </span></label>
-                <button type="submit" onclick="openSensitiveModal()">ตัวอย่างระดับผิวแพ้ง่าย</button>
-                <input type="range" name="sensitiveLevel" min="1" max="5" value="3" oninput="document.getElementById('sensitiveLevelValue').innerText = this.value">
+                <button class="sensitive-exam-button"
+                        type="submit"
+                        onclick="openSensitiveModal()">
+                    ตัวอย่างระดับผิวแพ้ง่าย
+                </button>
+
+                <input type="range"
+                       name="sensitiveLevel"
+                       min="1"
+                       max="5"
+                       value="3"
+                       oninput="document.getElementById('sensitiveLevelValue').innerText = this.value" />
             </div>
 
             <!-- Modal -->
@@ -262,35 +279,38 @@
 
                     <div class="modal-body">
                         <p>
-                            <strong>🟢 ระดับ 1: ผิวปกติ ไม่แพ้ง่าย</strong><br>
-                            ไม่มีอาการระคายเคือง<br>
-                            ใช้ผลิตภัณฑ์ทั่วไปได้โดยไม่มีปัญหา<br>
+                            <strong>🟢 ระดับ 1: ผิวปกติ ไม่แพ้ง่าย</strong><br />
+                            ไม่มีอาการระคายเคือง<br />
+                            ใช้ผลิตภัณฑ์ทั่วไปได้โดยไม่มีปัญหา<br />
                             ผิวแข็งแรง มีเกราะป้องกันผิวดี
                         </p>
 
                         <p>
-                            <strong>🟡 ระดับ 2: ผิวค่อนข้างไว แต่ยังไม่จัดว่าแพ้ง่าย</strong><br>
-                            บางครั้งมีอาการคัน แดง หรือลอกเล็กน้อยเมื่อใช้ผลิตภัณฑ์บางชนิด<br>
+                            <strong>🟡 ระดับ 2: ผิวค่อนข้างไว แต่ยังไม่จัดว่าแพ้ง่าย</strong><br />
+                            บางครั้งมีอาการคัน แดง
+                            หรือลอกเล็กน้อยเมื่อใช้ผลิตภัณฑ์บางชนิด<br />
                             มักเกิดเมื่อเปลี่ยนสภาพอากาศหรือใช้ผลิตภัณฑ์ใหม่
                         </p>
 
                         <p>
-                            <strong>🟠 ระดับ 3: ผิวไวต่อสารบางประเภท</strong><br>
-                            มีอาการแสบ แดง หรือคันเมื่อใช้ผลิตภัณฑ์ที่มีน้ำหอม, แอลกอฮอล์ หรือสารกันเสีย<br>
+                            <strong>🟠 ระดับ 3: ผิวไวต่อสารบางประเภท</strong><br />
+                            มีอาการแสบ แดง หรือคันเมื่อใช้ผลิตภัณฑ์ที่มีน้ำหอม, แอลกอฮอล์
+                            หรือสารกันเสีย<br />
                             ต้องเลือกผลิตภัณฑ์ที่ระบุว่า "สำหรับผิวแพ้ง่าย" (sensitive skin)
                         </p>
 
                         <p>
-                            <strong>🔴 ระดับ 4: ผิวแพ้ง่าย</strong><br>
-                            มีอาการผื่นแดง ระคายเคืองชัดเจนเมื่อใช้ผลิตภัณฑ์ทั่วไป<br>
-                            อาจมีปัญหาผิวร่วม เช่น ผิวแห้งมาก, barrier ผิวอ่อนแอ<br>
-                            ต้องหลีกเลี่ยงสารระคายเคืองทั่วไป และเลือกสูตร minimal ingredients
+                            <strong>🔴 ระดับ 4: ผิวแพ้ง่าย</strong><br />
+                            มีอาการผื่นแดง ระคายเคืองชัดเจนเมื่อใช้ผลิตภัณฑ์ทั่วไป<br />
+                            อาจมีปัญหาผิวร่วม เช่น ผิวแห้งมาก, barrier ผิวอ่อนแอ<br />
+                            ต้องหลีกเลี่ยงสารระคายเคืองทั่วไป และเลือกสูตร minimal
+                            ingredients
                         </p>
 
                         <p>
-                            <strong>⚠️ ระดับ 5: ผิวแพ้ง่ายเรื้อรัง หรือเป็นโรคผิวหนัง</strong><br>
-                            แพ้ง่ายอย่างรุนแรง เช่น มีอาการลอก แดง แสบตลอดเวลา<br>
-                            อาจมีภาวะโรคผิวหนังร่วม เช่น Atopic dermatitis หรือ Rosacea<br>
+                            <strong>⚠️ ระดับ 5: ผิวแพ้ง่ายเรื้อรัง หรือเป็นโรคผิวหนัง</strong><br />
+                            แพ้ง่ายอย่างรุนแรง เช่น มีอาการลอก แดง แสบตลอดเวลา<br />
+                            อาจมีภาวะโรคผิวหนังร่วม เช่น Atopic dermatitis หรือ Rosacea<br />
                             ควรปรึกษาแพทย์ผิวหนังโดยตรงก่อนใช้ผลิตภัณฑ์
                         </p>
                     </div>
@@ -302,9 +322,8 @@
             </div>
 
             <script>
-
                 function openSensitiveModal() {
-                    document.getElementById("sensitiveExample").style.display = "block";
+                    document.getElementById("sensitiveExample").style.display = "flex";
                 }
 
                 function closeSensitiveModal() {
@@ -317,81 +336,90 @@
                     if (event.target === modal) {
                         modal.style.display = "none";
                     }
-                }
-
-
+                };
             </script>
 
-
             <button type="submit" id="confirmBtn">ยืนยัน</button>
-
         </form>
     </div>
-        <script>
-            function handleIconSelect(containerId, hiddenName) {
-                const container = document.getElementById(containerId);
-                let selectedValue = "";
+    <script>
+        function handleIconSelect(containerId, hiddenName) {
+            const container = document.getElementById(containerId);
+            let selectedValue = "";
 
-                container.querySelectorAll('.icon-option').forEach(option => {
-                    option.addEventListener('click', () => {
-                        container.querySelectorAll('.icon-option').forEach(opt => opt.classList.remove('selected'));
-                        option.classList.add('selected');
-                        selectedValue = option.getAttribute('data-value');
-                    });
+            container.querySelectorAll(".icon-option").forEach((option) => {
+                option.addEventListener("click", () => {
+                    container
+                        .querySelectorAll(".icon-option")
+                        .forEach((opt) => opt.classList.remove("selected"));
+                    option.classList.add("selected");
+                    selectedValue = option.getAttribute("data-value");
                 });
+            });
 
-                return () => selectedValue;
+            return () => selectedValue;
+        }
+
+        const getGender = handleIconSelect("genderSelect");
+        const getSkinType = handleIconSelect("skinTypeSelect");
+
+        const form = document.getElementById("surveyForm");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            console.log("herhe");
+            const gender = getGender();
+            const skinType = getSkinType();
+            const params = new URLSearchParams(window.location.search);
+            const userId = params.get("userId"); // จะได้ค่าที่ส่งมา เช่น ?userId=123
+
+            console.log("User ID:", userId);
+
+            const age = parseInt(form.age.value);
+            // const oilLevel = form.oilLevel.value;
+            const sensitiveLevel = form.sensitiveLevel.value;
+
+            if (!gender || !skinType) {
+                alert("กรุณาเลือกเพศและสภาพผิว");
+                return;
             }
 
-            const getGender = handleIconSelect('genderSelect');
-            const getSkinType = handleIconSelect('skinTypeSelect');
+            const data = {
+                gender,
+                age,
+                skinType,
+                userId,
+                //   oilLevel,
+                sensitiveLevel,
+                timestamp: new Date().toISOString(),
+            };
 
-            const form = document.getElementById('surveyForm');
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
+            // ส่งไปยัง Google Sheet (ผ่าน Apps Script)
+            try {
+                const res = await fetch(
+                    "https://g.allyx.tech/webhook/2bc53b7c-439c-496f-a4c0-e1dbb731687b",
 
-                const gender = getGender();
-                const skinType = getSkinType();
-                const age = form.age.value;
-                const oilLevel = form.oilLevel.value;
-                const sensitiveLevel = form.sensitiveLevel.value;
-
-                if (!gender || !skinType) {
-                    alert("กรุณาเลือกเพศและสภาพผิว");
-                    return;
-                }
-
-                const data = {
-                    gender,
-                    age,
-                    skinType,
-                    oilLevel,
-                    sensitiveLevel,
-                    timestamp: new Date().toISOString()
-                };
-
-                // ส่งไปยัง Google Sheet (ผ่าน Apps Script)
-                try {
-                    const res = await fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL", {
+                    {
                         method: "POST",
                         mode: "no-cors",
                         headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(data)
-                    });
+                        body: JSON.stringify(data),
+                    }
+                );
 
-                    alert("ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณค่ะ!");
-                    form.reset();
-                    location.href = "thankyou.html"; // เปลี่ยนตามต้องการ
-                } catch (error) {
-                    alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
-                    console.error(error);
-                }
-            });
+                alert("ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณค่ะ!");
+                //   form.reset();
+                //   location.href = "thankyou.html"; // เปลี่ยนตามต้องการ
+            } catch (error) {
+                alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
+                console.error(error);
+            }
+        });
 
-          
-
-        </script>
+        function closeModal() {
+            document.getElementById("skinModal").style.display = "none";
+        }
+    </script>
 </body>
 </html>

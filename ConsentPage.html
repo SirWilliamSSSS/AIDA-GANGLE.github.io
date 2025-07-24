@@ -71,7 +71,6 @@
             cursor: pointer;
             text-decoration: underline;
         }
-
         /* Popup */
         .modal {
             display: none;
@@ -127,21 +126,17 @@
             <br />
             <span class="link-popup" onclick="openModal()">[อ่านรายละเอียดทั้งหมด]</span>
         </p>
-
         <div class="checkbox-container">
             <input type="checkbox" id="consentCheck" onchange="toggleButton()" />
             <label for="consentCheck">ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ข้างต้น</label>
         </div>
-
         <button class="btn" id="nextBtn" disabled="true" onclick="goNext()">
             ถัดไป
         </button>
-
         <p class="small-text">
             คุณสามารถถอนความยินยอมได้ภายหลังโดยติดต่อผ่าน LINE OA
         </p>
     </div>
-
     <!-- Modal -->
     <div id="consentModal" class="modal">
         <div class="modal-content">
@@ -162,32 +157,26 @@
                 - ข้อมูลที่เกี่ยวกับผลการวิเคราะห์ - ข้อมูลผู้ใช้งาน LINE เช่น LINE
                 User ID, ชื่อใน LINE, รูปโปรไฟล์ (ถ้ามี)<br />
                 - วันเวลา และประวัติการใช้งานระบบ<br />
-
                 <strong>2. วัตถุประสงค์ในการใช้ข้อมูล</strong><br />
                 - วิเคราะห์ภาพที่ท่านส่งเข้ามาโดยใช้ระบบ AI<br />
                 - แนะนำสินค้า บริการ หรือแนวทางดูแลสุขภาพ/ผิวพรรณ (ถ้ามี)<br />
                 - ปรับปรุงประสบการณ์การใช้งานให้เหมาะสมยิ่งขึ้น<br />
                 - ติดต่อกลับในกรณีจำเป็น<br />
-
                 <strong>3. ระยะเวลาในการเก็บรักษาข้อมูล</strong><br />
                 - ข้อมูลส่วนบุคคลจะถูกเก็บไว้ ไม่เกินระยะเวลาที่จำเป็น<br />
                 - เพื่อวัตถุประสงค์ที่ระบุไว้ หรือจนกว่าท่านจะร้องขอให้ลบข้อมูล<br />
-
                 <strong>4. การเปิดเผยข้อมูล</strong><br />
                 - เราจะไม่เปิดเผยข้อมูลของท่านให้บุคคลภายนอก เว้นแต่ : <br />
                 ได้รับความยินยอมจากท่าน<br />
                 เป็นไปตามข้อกฎหมาย หรือคำสั่งของหน่วยงานราชการ
-
                 <strong>5. สิทธิของเจ้าของข้อมูล</strong><br />
                 - ท่านมีสิทธิ : ขอเข้าถึง / แก้ไข / ถอนความยินยอม <br />
                 ในการเก็บ ใช้ หรือเปิดเผยข้อมูล ขอให้ลบ หรือทำลายข้อมูลส่วนบุคคล<br />
                 โดยสามารถติดต่อเราได้ตามช่องทางที่ระบุไว้ <br />
-
                 <strong>6. มาตรการรักษาความปลอดภัย</strong><br />
                 - เราดำเนินการรักษาความมั่นคงปลอดภัยของข้อมูลของท่าน
                 ด้วยมาตรการทางเทคนิคและองค์กร เช่น การเข้ารหัส (encryption),
                 การจำกัดการเข้าถึง, และการควบคุมผู้ใช้งานระบบอย่างเหมาะสม<br />
-
                 <strong>7. ช่องทางติดต่อ</strong><br />
                 - หากท่านมีคำถามเกี่ยวกับนโยบายนี้ หรือต้องการใช้สิทธิของเจ้าของข้อมูล
                 กรุณาติดต่อ : <br />
@@ -199,25 +188,22 @@
             </p>
         </div>
     </div>
-
     <script>
         function toggleButton() {
             const checkbox = document.getElementById("consentCheck");
             document.getElementById("nextBtn").disabled = !checkbox.checked;
         }
-
         function goNext() {
-            window.location.href = "UserInfo.html"; // เปลี่ยนเป็น path ของหน้าถัดไป
+            const params = new URLSearchParams(window.location.search);
+            const userId = params.get("userId");
+            window.location.href = `UserInfo.html?userId=${userId}`; // เปลี่ยนเป็น path ของหน้าถัดไป
         }
-
         function openModal() {
             document.getElementById("consentModal").style.display = "flex";
         }
-
         function closeModal() {
             document.getElementById("consentModal").style.display = "none";
         }
-
         // Close modal if click outside
         window.onclick = function (event) {
             const modal = document.getElementById("consentModal");

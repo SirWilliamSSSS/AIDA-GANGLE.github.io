@@ -370,7 +370,7 @@
             const gender = getGender();
             const skinType = getSkinType();
             const params = new URLSearchParams(window.location.search);
-            const userId = params.get("userId"); // จะได้ค่าที่ส่งมา เช่น ?userId=123
+            const userId = encodeURIComponent(params.get("userId")) ; // จะได้ค่าที่ส่งมา เช่น ?userId=123
 
             console.log("User ID:", userId);
 

@@ -422,25 +422,7 @@
         }
     </script>
 
-    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-    <script>
-        async function initLiff() {
-            await liff.init({ liffId: "2007780634-0QgQ4Ayp" });
-
-            if (!liff.isLoggedIn()) {
-                liff.login();
-            } else {
-                const profile = await liff.getProfile();
-                console.log("User ID:", profile.userId);  // ← ได้ userId ตรงนี้
-
-                // ส่ง userId ไป backend หรือใช้งานต่อใน frontend
-                // เช่น: fetch(`/api/user/${profile.userId}`)
-            }
-        }
-
-        initLiff();
-    </script>
-
+   
 
 </body>
 </html>

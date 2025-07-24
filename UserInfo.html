@@ -370,7 +370,7 @@
             const gender = getGender();
             const skinType = getSkinType();
             const params = new URLSearchParams(window.location.search);
-            const userId = encodeURIComponent(params.get("userId")) ; // จะได้ค่าที่ส่งมา เช่น ?userId=123
+            const userId = encodeURIComponent(params.get("userId")); // จะได้ค่าที่ส่งมา เช่น ?userId=123
 
             console.log("User ID:", userId);
 
@@ -421,5 +421,26 @@
             document.getElementById("skinModal").style.display = "none";
         }
     </script>
+
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+        async function initLiff() {
+            await liff.init({ liffId: "YOUR_LIFF_ID" });
+
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            } else {
+                const profile = await liff.getProfile();
+                console.log("User ID:", profile.userId);  // ← ได้ userId ตรงนี้
+
+                // ส่ง userId ไป backend หรือใช้งานต่อใน frontend
+                // เช่น: fetch(`/api/user/${profile.userId}`)
+            }
+        }
+
+        initLiff();
+    </script>
+
+
 </body>
 </html>
